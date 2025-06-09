@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- ADD THIS LINE: This is the most important tag for mobile-friendliness -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>To The One Who Doesn't Know</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Caveat:wght@400;500&display=swap"
+	rel="stylesheet">
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+	font-family: 'Poppins', sans-serif;
+	background-color: #000;
+	color: #988686;
+}
+
+body {
+	background: radial-gradient(ellipse at center, #1b1b1b 0%, #000000 100%);
+    /* CHANGE: Using Flexbox for more robust centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.content {
+	z-index: 2;
+	/* REMOVED: Absolute positioning is no longer needed */
+	/* position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); */
+	text-align: center;
+	padding: 20px; /* Add some padding for small screens */
+	animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {from { 
+    opacity:0;
+	transform: translateY(15px);
+} to {
+	opacity: 1;
+	transform: translateY(0);
+}}
+
+h1 {
+	font-size: 2.8em;
+	margin-bottom: 10px;
+	text-shadow: 0 0 15px rgba(152, 134, 134, 0.3);
+}
+
+p {
+	font-size: 1.2em;
+	margin-top: 10px;
+	white-space: normal;
+    max-width: 600px; /* Prevent text from becoming too wide */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-group {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* This correctly handles stacking */
+}
+
+.button-group a.logBtn {
+    text-decoration: none;
+}
+
+.logBtn {
+	/* REMOVED: margin-top is now on the container */
+	padding: 14px 30px;
+	background-color: transparent;
+	border: 1px solid #988686;
+	color: #988686;
+	font-size: 16px;
+	border-radius: 10px;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	box-shadow: 0 0 10px rgba(152, 134, 134, 0.2);
+	transition: all 0.3s ease;
+}
+
+.logBtn:hover {
+	transform: translateY(-3px);
+	background-color: #988686;
+	color: #000;
+	box-shadow: 0 0 25px rgba(152, 134, 134, 0.6);
+}
+
+/* --- Timeline Styles (Unchanged for Desktop) --- */
+.timeline-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding-bottom: 20px;
+	overflow: hidden;
+	z-index: 2;
+	-webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+	mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.timeline {
+	display: inline-flex;
+	align-items: center;
+	animation: scroll 60s linear infinite;
+}
+
+.timeline:hover {
+	animation-play-state: paused;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.event {
+	background: rgba(25, 25, 25, 0.5);
+	backdrop-filter: blur(5px);
+	border: 1px solid rgba(152, 134, 134, 0.2);
+	border-radius: 12px;
+	padding: 20px;
+	margin: 0 15px;
+	min-width: 200px;
+	text-align: center;
+	color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 20px rgba(152, 134, 134, 0.3);
+}
+
+.event h3 {
+	margin: 0; font-size: 18px; font-weight: 500; color: #988686;
+}
+
+.event p {
+	margin: 8px 0 0 0; font-size: 14px; font-weight: 300;
+	color: #ccc; white-space: normal;
+}
+
+
+/**************************************************/
+/* ---     MOBILE RESPONSIVE STYLES     ---       */
+/**************************************************/
+@media (max-width: 768px) {
+	h1 {
+		font-size: 2.2em; /* Adjusted for readability */
+	}
+	
+	p {
+		font-size: 1.1em;
+	}
+
+    .button-group {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center the stacked buttons */
+        gap: 15px;
+    }
+
+	.timeline-container {
+		display: none; /* Hide the timeline on mobile for a cleaner look */
+	}
+}
+</style>
+</head>
+<body>
+	<canvas id="background-canvas"></canvas>
+	
+	<div class="content">
+		<h1>Whispers Unseen, Words Unheard</h1>
+		<p>They remain unaware — yet still, you pen your silent truth.</p>
+
+		<div class="button-group">
+			<a href="setup.jsp" class="logBtn">Begin a New Journey</a>
+			<a href="login.jsp" class="logBtn">Enter Your World</a>
+		</div>
+	</div>
+
+
+	<div class="timeline-container">
+		<div class="timeline">
+			<!-- Events are duplicated to create a seamless loop -->
+			<div class="event"><h3>First Glance</h3><p>A fleeting moment, a world of possibilities.</p></div>
+			<div class="event"><h3>Shared Smile</h3><p>An unspoken connection across a crowded room.</p></div>
+			<div class="event"><h3>A Late Night Talk</h3><p>Where hours felt like minutes and stars listened.</p></div>
+			<div class="event"><h3>The First Song</h3><p>A melody that would forever be yours.</p></div>
+			<div class="event"><h3>An Unsent Letter</h3><p>Words of courage and fear, sealed in silence.</p></div>
+			<div class="event"><h3>Familiar Silence</h3><p>Comfortable quiet that spoke volumes.</p></div>
+			<!-- Duplicated set for seamless animation -->
+			<div class="event"><h3>First Glance</h3><p>A fleeting moment, a world of possibilities.</p></div>
+			<div class="event"><h3>Shared Smile</h3><p>An unspoken connection across a crowded room.</p></div>
+			<div class="event"><h3>A Late Night Talk</h3><p>Where hours felt like minutes and stars listened.</p></div>
+			<div class="event"><h3>The First Song</h3><p>A melody that would forever be yours.</p></div>
+			<div class="event"><h3>An Unsent Letter</h3><p>Words of courage and fear, sealed in silence.</p></div>
+			<div class="event"><h3>Familiar Silence</h3><p>Comfortable quiet that spoke volumes.</p></div>
+		</div>
+	</div>
+
+	<script>
+  // --- The "Rising Embers" animation script is unchanged ---
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+  let particlesArray;
+  function setCanvasSize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', () => { setCanvasSize(); init(); });
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width; this.y = canvas.height + Math.random() * 100;
+      this.size = Math.random() * 2.5 + 1; this.speedY = Math.random() * 1 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.5; this.opacity = this.size / 3.5;
+      this.color = `rgba(152, 134, 134, ${this.opacity})`;
+    }
+    update() {
+      this.y -= this.speedY; this.x += this.speedX;
+      if (this.y < -10) {
+        this.y = canvas.height + 10; this.x = Math.random() * canvas.width;
+        this.size = Math.random() * 2.5 + 1; this.speedY = Math.random() * 1 + 0.5;
+        this.opacity = this.size / 3.5; this.color = `rgba(152, 134, 134, ${this.opacity})`;
+      }
+    }
+    draw() {
+      ctx.fillStyle = this.color; ctx.shadowBlur = 5; ctx.shadowColor = this.color;
+      ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+  function init() {
+    particlesArray = []; const numberOfParticles = (canvas.width * canvas.height) / 10000;
+    for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+    for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
+    requestAnimationFrame(animate);
+  }
+  setCanvasSize(); init(); animate();
+</script>
+
+</body>
+</html>
